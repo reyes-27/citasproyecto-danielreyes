@@ -1,0 +1,36 @@
+<form #citaForm="ngForm" (ngSubmit)="aggCita()" novalidate>
+  <ion-item>
+    <ion-label position="stacked">Autor</ion-label>
+    <ion-input
+      type="text"
+      [(ngModel)]="txtautor"
+      name="autor"
+      #autor="ngModel"
+      placeholder="Autor"
+      required
+      minlength="2"
+    ></ion-input>
+  </ion-item>
+  <div *ngIf="autor.touched && autor.invalid" class="error-message">
+    <p *ngIf="autor.errors?.['required']">El campo autor es obligatorio.</p>
+    <p *ngIf="autor.errors?.['minlength']">El autor debe tener al menos 2 caracteres.</p>
+  </div>
+  <ion-item>
+    <ion-label position="stacked">Frase</ion-label>
+    <ion-input
+      type="text"
+      [(ngModel)]="txtfrase"
+      name="frase"
+      #frase="ngModel"
+      placeholder="Frase"
+      required
+      minlength="5"
+    ></ion-input>
+  </ion-item>
+  <div *ngIf="frase.touched && frase.invalid" class="error-message">
+    <p *ngIf="frase.errors?.['required']">El campo frase es obligatorio.</p>
+    <p *ngIf="frase.errors?.['minlength']">La frase debe tener al menos 5 caracteres.</p>
+  </div>
+
+  <ion-button type="submit" [disabled]="citaForm.invalid">Agregar +</ion-button>
+</form>

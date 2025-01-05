@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Inicio</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/configuracion">
+        <ion-icon name="settings-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Pagina de Citas</ion-title>
+    </ion-toolbar>
+  </ion-header>
+    <ion-buttons>
+      <ion-button routerLink="/citas" routerDirection="forward">Citas</ion-button>
+    </ion-buttons>
+  <div id="container">
+    <div *ngIf="citaAleatoria">
+      <h2>"{{ citaAleatoria.frase }}"</h2>
+      <p>- {{ citaAleatoria.autor }}</p>
+    </div>
+    <div *ngIf="!citaAleatoria">
+      <p>No hay citas disponibles</p>
+    </div>
+  <ion-icon 
+    *ngIf="permiteBorrar" 
+    src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/svg/trash-outline.svg" 
+    (click)="eliminarCita(citaAleatoria?.id ?? -1)"
+
+    style="cursor: pointer;">
+  </ion-icon>
+  </div>
+</ion-content>
